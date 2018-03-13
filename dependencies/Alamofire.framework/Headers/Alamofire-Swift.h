@@ -185,51 +185,75 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Wnullability"
 
 SWIFT_MODULE_NAMESPACE_PUSH("Alamofire")
+
+
 @class NSURLSession;
-@class NSURLSessionTask;
-@class NSHTTPURLResponse;
 @class NSURLAuthenticationChallenge;
 @class NSURLCredential;
+@class NSURLSessionTask;
+@class NSHTTPURLResponse;
 @class NSInputStream;
-
-/// The task delegate is responsible for handling all delegate callbacks for the underlying task as well as
-/// executing all operations attached to the serial operation queue upon task completion.
-SWIFT_CLASS("_TtC9Alamofire12TaskDelegate")
-@interface TaskDelegate : NSObject
-- (void)URLSession:(NSURLSession * _Nonnull)session task:(NSURLSessionTask * _Nonnull)task willPerformHTTPRedirection:(NSHTTPURLResponse * _Nonnull)response newRequest:(NSURLRequest * _Nonnull)request completionHandler:(void (^ _Nonnull)(NSURLRequest * _Nullable))completionHandler;
-- (void)URLSession:(NSURLSession * _Nonnull)session task:(NSURLSessionTask * _Nonnull)task didReceiveChallenge:(NSURLAuthenticationChallenge * _Nonnull)challenge completionHandler:(void (^ _Nonnull)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler;
-- (void)URLSession:(NSURLSession * _Nonnull)session task:(NSURLSessionTask * _Nonnull)task needNewBodyStream:(void (^ _Nonnull)(NSInputStream * _Nullable))completionHandler;
-- (void)URLSession:(NSURLSession * _Nonnull)session task:(NSURLSessionTask * _Nonnull)task didCompleteWithError:(NSError * _Nullable)error;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-@end
-
 @class NSURLSessionDataTask;
 @class NSURLResponse;
 @class NSURLSessionDownloadTask;
 @class NSCachedURLResponse;
-
-SWIFT_CLASS("_TtC9Alamofire16DataTaskDelegate")
-@interface DataTaskDelegate : TaskDelegate <NSURLSessionDataDelegate>
-- (void)URLSession:(NSURLSession * _Nonnull)session dataTask:(NSURLSessionDataTask * _Nonnull)dataTask didReceiveResponse:(NSURLResponse * _Nonnull)response completionHandler:(void (^ _Nonnull)(NSURLSessionResponseDisposition))completionHandler;
-- (void)URLSession:(NSURLSession * _Nonnull)session dataTask:(NSURLSessionDataTask * _Nonnull)dataTask didBecomeDownloadTask:(NSURLSessionDownloadTask * _Nonnull)downloadTask;
-- (void)URLSession:(NSURLSession * _Nonnull)session dataTask:(NSURLSessionDataTask * _Nonnull)dataTask didReceiveData:(NSData * _Nonnull)data;
-- (void)URLSession:(NSURLSession * _Nonnull)session dataTask:(NSURLSessionDataTask * _Nonnull)dataTask willCacheResponse:(NSCachedURLResponse * _Nonnull)proposedResponse completionHandler:(void (^ _Nonnull)(NSCachedURLResponse * _Nullable))completionHandler;
-@end
-
-
-SWIFT_CLASS("_TtC9Alamofire20DownloadTaskDelegate")
-@interface DownloadTaskDelegate : TaskDelegate <NSURLSessionDownloadDelegate>
-- (void)URLSession:(NSURLSession * _Nonnull)session downloadTask:(NSURLSessionDownloadTask * _Nonnull)downloadTask didFinishDownloadingToURL:(NSURL * _Nonnull)location;
-- (void)URLSession:(NSURLSession * _Nonnull)session downloadTask:(NSURLSessionDownloadTask * _Nonnull)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite;
-- (void)URLSession:(NSURLSession * _Nonnull)session downloadTask:(NSURLSessionDownloadTask * _Nonnull)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes;
-@end
-
-
-
+@class NSURLSessionStreamTask;
+@class NSOutputStream;
 
 /// Responsible for handling all delegate callbacks for the underlying session.
 SWIFT_CLASS("_TtC9Alamofire15SessionDelegate")
 @interface SessionDelegate : NSObject
+/// Overrides default behavior for URLSessionDelegate method <code>urlSession(_:didBecomeInvalidWithError:)</code>.
+@property (nonatomic, copy) void (^ _Nullable sessionDidBecomeInvalidWithError)(NSURLSession * _Nonnull, NSError * _Nullable);
+/// Overrides all behavior for URLSessionDelegate method <code>urlSession(_:didReceive:completionHandler:)</code> and requires the caller to call the <code>completionHandler</code>.
+@property (nonatomic, copy) void (^ _Nullable sessionDidReceiveChallengeWithCompletion)(NSURLSession * _Nonnull, NSURLAuthenticationChallenge * _Nonnull, void (^ _Nonnull)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable));
+/// Overrides default behavior for URLSessionDelegate method <code>urlSessionDidFinishEvents(forBackgroundURLSession:)</code>.
+@property (nonatomic, copy) void (^ _Nullable sessionDidFinishEventsForBackgroundURLSession)(NSURLSession * _Nonnull);
+/// Overrides default behavior for URLSessionTaskDelegate method <code>urlSession(_:task:willPerformHTTPRedirection:newRequest:completionHandler:)</code>.
+@property (nonatomic, copy) NSURLRequest * _Nullable (^ _Nullable taskWillPerformHTTPRedirection)(NSURLSession * _Nonnull, NSURLSessionTask * _Nonnull, NSHTTPURLResponse * _Nonnull, NSURLRequest * _Nonnull);
+/// Overrides all behavior for URLSessionTaskDelegate method <code>urlSession(_:task:willPerformHTTPRedirection:newRequest:completionHandler:)</code> and
+/// requires the caller to call the <code>completionHandler</code>.
+@property (nonatomic, copy) void (^ _Nullable taskWillPerformHTTPRedirectionWithCompletion)(NSURLSession * _Nonnull, NSURLSessionTask * _Nonnull, NSHTTPURLResponse * _Nonnull, NSURLRequest * _Nonnull, void (^ _Nonnull)(NSURLRequest * _Nullable));
+/// Overrides all behavior for URLSessionTaskDelegate method <code>urlSession(_:task:didReceive:completionHandler:)</code> and
+/// requires the caller to call the <code>completionHandler</code>.
+@property (nonatomic, copy) void (^ _Nullable taskDidReceiveChallengeWithCompletion)(NSURLSession * _Nonnull, NSURLSessionTask * _Nonnull, NSURLAuthenticationChallenge * _Nonnull, void (^ _Nonnull)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable));
+/// Overrides default behavior for URLSessionTaskDelegate method <code>urlSession(_:task:needNewBodyStream:)</code>.
+@property (nonatomic, copy) NSInputStream * _Nullable (^ _Nullable taskNeedNewBodyStream)(NSURLSession * _Nonnull, NSURLSessionTask * _Nonnull);
+/// Overrides all behavior for URLSessionTaskDelegate method <code>urlSession(_:task:needNewBodyStream:)</code> and
+/// requires the caller to call the <code>completionHandler</code>.
+@property (nonatomic, copy) void (^ _Nullable taskNeedNewBodyStreamWithCompletion)(NSURLSession * _Nonnull, NSURLSessionTask * _Nonnull, void (^ _Nonnull)(NSInputStream * _Nullable));
+/// Overrides default behavior for URLSessionTaskDelegate method <code>urlSession(_:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:)</code>.
+@property (nonatomic, copy) void (^ _Nullable taskDidSendBodyData)(NSURLSession * _Nonnull, NSURLSessionTask * _Nonnull, int64_t, int64_t, int64_t);
+/// Overrides default behavior for URLSessionTaskDelegate method <code>urlSession(_:task:didCompleteWithError:)</code>.
+@property (nonatomic, copy) void (^ _Nullable taskDidComplete)(NSURLSession * _Nonnull, NSURLSessionTask * _Nonnull, NSError * _Nullable);
+/// Overrides default behavior for URLSessionDataDelegate method <code>urlSession(_:dataTask:didReceive:completionHandler:)</code>.
+@property (nonatomic, copy) NSURLSessionResponseDisposition (^ _Nullable dataTaskDidReceiveResponse)(NSURLSession * _Nonnull, NSURLSessionDataTask * _Nonnull, NSURLResponse * _Nonnull);
+/// Overrides all behavior for URLSessionDataDelegate method <code>urlSession(_:dataTask:didReceive:completionHandler:)</code> and
+/// requires caller to call the <code>completionHandler</code>.
+@property (nonatomic, copy) void (^ _Nullable dataTaskDidReceiveResponseWithCompletion)(NSURLSession * _Nonnull, NSURLSessionDataTask * _Nonnull, NSURLResponse * _Nonnull, void (^ _Nonnull)(NSURLSessionResponseDisposition));
+/// Overrides default behavior for URLSessionDataDelegate method <code>urlSession(_:dataTask:didBecome:)</code>.
+@property (nonatomic, copy) void (^ _Nullable dataTaskDidBecomeDownloadTask)(NSURLSession * _Nonnull, NSURLSessionDataTask * _Nonnull, NSURLSessionDownloadTask * _Nonnull);
+/// Overrides default behavior for URLSessionDataDelegate method <code>urlSession(_:dataTask:didReceive:)</code>.
+@property (nonatomic, copy) void (^ _Nullable dataTaskDidReceiveData)(NSURLSession * _Nonnull, NSURLSessionDataTask * _Nonnull, NSData * _Nonnull);
+/// Overrides default behavior for URLSessionDataDelegate method <code>urlSession(_:dataTask:willCacheResponse:completionHandler:)</code>.
+@property (nonatomic, copy) NSCachedURLResponse * _Nullable (^ _Nullable dataTaskWillCacheResponse)(NSURLSession * _Nonnull, NSURLSessionDataTask * _Nonnull, NSCachedURLResponse * _Nonnull);
+/// Overrides all behavior for URLSessionDataDelegate method <code>urlSession(_:dataTask:willCacheResponse:completionHandler:)</code> and
+/// requires caller to call the <code>completionHandler</code>.
+@property (nonatomic, copy) void (^ _Nullable dataTaskWillCacheResponseWithCompletion)(NSURLSession * _Nonnull, NSURLSessionDataTask * _Nonnull, NSCachedURLResponse * _Nonnull, void (^ _Nonnull)(NSCachedURLResponse * _Nullable));
+/// Overrides default behavior for URLSessionDownloadDelegate method <code>urlSession(_:downloadTask:didFinishDownloadingTo:)</code>.
+@property (nonatomic, copy) void (^ _Nullable downloadTaskDidFinishDownloadingToURL)(NSURLSession * _Nonnull, NSURLSessionDownloadTask * _Nonnull, NSURL * _Nonnull);
+/// Overrides default behavior for URLSessionDownloadDelegate method <code>urlSession(_:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:)</code>.
+@property (nonatomic, copy) void (^ _Nullable downloadTaskDidWriteData)(NSURLSession * _Nonnull, NSURLSessionDownloadTask * _Nonnull, int64_t, int64_t, int64_t);
+/// Overrides default behavior for URLSessionDownloadDelegate method <code>urlSession(_:downloadTask:didResumeAtOffset:expectedTotalBytes:)</code>.
+@property (nonatomic, copy) void (^ _Nullable downloadTaskDidResumeAtOffset)(NSURLSession * _Nonnull, NSURLSessionDownloadTask * _Nonnull, int64_t, int64_t);
+/// Overrides default behavior for URLSessionStreamDelegate method <code>urlSession(_:readClosedFor:)</code>.
+@property (nonatomic, copy) void (^ _Nullable streamTaskReadClosed)(NSURLSession * _Nonnull, NSURLSessionStreamTask * _Nonnull);
+/// Overrides default behavior for URLSessionStreamDelegate method <code>urlSession(_:writeClosedFor:)</code>.
+@property (nonatomic, copy) void (^ _Nullable streamTaskWriteClosed)(NSURLSession * _Nonnull, NSURLSessionStreamTask * _Nonnull);
+/// Overrides default behavior for URLSessionStreamDelegate method <code>urlSession(_:betterRouteDiscoveredFor:)</code>.
+@property (nonatomic, copy) void (^ _Nullable streamTaskBetterRouteDiscovered)(NSURLSession * _Nonnull, NSURLSessionStreamTask * _Nonnull);
+/// Overrides default behavior for URLSessionStreamDelegate method <code>urlSession(_:streamTask:didBecome:outputStream:)</code>.
+@property (nonatomic, copy) void (^ _Nullable streamTaskDidBecomeInputAndOutputStreams)(NSURLSession * _Nonnull, NSURLSessionStreamTask * _Nonnull, NSInputStream * _Nonnull, NSOutputStream * _Nonnull);
 /// Initializes the <code>SessionDelegate</code> instance.
 ///
 /// returns:
@@ -288,32 +312,6 @@ SWIFT_CLASS("_TtC9Alamofire15SessionDelegate")
 - (void)URLSession:(NSURLSession * _Nonnull)session downloadTask:(NSURLSessionDownloadTask * _Nonnull)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes;
 @end
 
-
-@interface SessionDelegate (SWIFT_EXTENSION(Alamofire)) <NSURLSessionDelegate>
-/// Tells the delegate that the session has been invalidated.
-/// \param session The session object that was invalidated.
-///
-/// \param error The error that caused invalidation, or nil if the invalidation was explicit.
-///
-- (void)URLSession:(NSURLSession * _Nonnull)session didBecomeInvalidWithError:(NSError * _Nullable)error;
-/// Requests credentials from the delegate in response to a session-level authentication request from the
-/// remote server.
-/// \param session The session containing the task that requested authentication.
-///
-/// \param challenge An object that contains the request for authentication.
-///
-/// \param completionHandler A handler that your delegate method must call providing the disposition
-/// and credential.
-///
-- (void)URLSession:(NSURLSession * _Nonnull)session didReceiveChallenge:(NSURLAuthenticationChallenge * _Nonnull)challenge completionHandler:(void (^ _Nonnull)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler;
-/// Tells the delegate that all messages enqueued for a session have been delivered.
-/// \param session The session that no longer has any outstanding requests.
-///
-- (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession * _Nonnull)session;
-@end
-
-@class NSURLSessionStreamTask;
-@class NSOutputStream;
 
 SWIFT_AVAILABILITY(tvos,introduced=9.0) SWIFT_AVAILABILITY(macos,introduced=10.11) SWIFT_AVAILABILITY(ios,introduced=9.0)
 @interface SessionDelegate (SWIFT_EXTENSION(Alamofire)) <NSURLSessionStreamDelegate>
@@ -394,6 +392,30 @@ SWIFT_AVAILABILITY(tvos,introduced=9.0) SWIFT_AVAILABILITY(macos,introduced=10.1
 - (void)URLSession:(NSURLSession * _Nonnull)session dataTask:(NSURLSessionDataTask * _Nonnull)dataTask willCacheResponse:(NSCachedURLResponse * _Nonnull)proposedResponse completionHandler:(void (^ _Nonnull)(NSCachedURLResponse * _Nullable))completionHandler;
 @end
 
+
+@interface SessionDelegate (SWIFT_EXTENSION(Alamofire)) <NSURLSessionDelegate>
+/// Tells the delegate that the session has been invalidated.
+/// \param session The session object that was invalidated.
+///
+/// \param error The error that caused invalidation, or nil if the invalidation was explicit.
+///
+- (void)URLSession:(NSURLSession * _Nonnull)session didBecomeInvalidWithError:(NSError * _Nullable)error;
+/// Requests credentials from the delegate in response to a session-level authentication request from the
+/// remote server.
+/// \param session The session containing the task that requested authentication.
+///
+/// \param challenge An object that contains the request for authentication.
+///
+/// \param completionHandler A handler that your delegate method must call providing the disposition
+/// and credential.
+///
+- (void)URLSession:(NSURLSession * _Nonnull)session didReceiveChallenge:(NSURLAuthenticationChallenge * _Nonnull)challenge completionHandler:(void (^ _Nonnull)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler;
+/// Tells the delegate that all messages enqueued for a session have been delivered.
+/// \param session The session that no longer has any outstanding requests.
+///
+- (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession * _Nonnull)session;
+@end
+
 @class NSURLSessionTaskMetrics;
 
 @interface SessionDelegate (SWIFT_EXTENSION(Alamofire)) <NSURLSessionTaskDelegate>
@@ -460,13 +482,22 @@ SWIFT_AVAILABILITY(tvos,introduced=9.0) SWIFT_AVAILABILITY(macos,introduced=10.1
 - (void)URLSession:(NSURLSession * _Nonnull)session task:(NSURLSessionTask * _Nonnull)task didCompleteWithError:(NSError * _Nullable)error;
 @end
 
+@class NSOperationQueue;
 
-
-
-
-SWIFT_CLASS("_TtC9Alamofire18UploadTaskDelegate")
-@interface UploadTaskDelegate : DataTaskDelegate
+/// The task delegate is responsible for handling all delegate callbacks for the underlying task as well as
+/// executing all operations attached to the serial operation queue upon task completion.
+SWIFT_CLASS("_TtC9Alamofire12TaskDelegate")
+@interface TaskDelegate : NSObject
+/// The serial operation queue used to execute all operations after the task completes.
+@property (nonatomic, readonly, strong) NSOperationQueue * _Nonnull queue;
+/// The data returned by the server.
+@property (nonatomic, readonly, copy) NSData * _Nullable data;
+/// The error generated throughout the lifecyle of the task.
+@property (nonatomic) NSError * _Nullable error;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
+
+
 
 SWIFT_MODULE_NAMESPACE_POP
 #pragma clang diagnostic pop

@@ -16,18 +16,16 @@
 		ED5B16EF2044A8C500CD994A /* CocoaLumberjack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED5B16DA2044A86400CD994A /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ED5B16F02044A8C500CD994A /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5B16DB2044A86400CD994A /* GoogleToolboxForMac.framework */; };
 		ED5B16F12044A8C500CD994A /* GoogleToolboxForMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED5B16DB2044A86400CD994A /* GoogleToolboxForMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		ED5B16F22044A8C500CD994A /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5B16DC2044A86400CD994A /* CocoaLumberjackSwift.framework */; };
-		ED5B16F32044A8C500CD994A /* CocoaLumberjackSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED5B16DC2044A86400CD994A /* CocoaLumberjackSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ED5B16F42044A8C500CD994A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5B16DD2044A86400CD994A /* Alamofire.framework */; };
 		ED5B16F52044A8C500CD994A /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED5B16DD2044A86400CD994A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		ED5B16F62044A8CC00CD994A /* LwayveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5B16E52044A87300CD994A /* LwayveSDK.framework */; };
-		ED5B16F72044A8CC00CD994A /* LwayveSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED5B16E52044A87300CD994A /* LwayveSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		ED5B16F92044A8D200CD994A /* LXProxSeeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5B16E82044A88000CD994A /* LXProxSeeSDK.framework */; };
 		ED5B16FF2044A91000CD994A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B16FA2044A91000CD994A /* AppDelegate.swift */; };
 		ED5B17002044A91000CD994A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED5B16FB2044A91000CD994A /* Assets.xcassets */; };
 		ED5B17012044A91000CD994A /* DebugInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B16FC2044A91000CD994A /* DebugInfoDataSource.swift */; };
 		ED5B17022044A91000CD994A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED5B16FD2044A91000CD994A /* Main.storyboard */; };
 		ED5B17032044A91000CD994A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B16FE2044A91000CD994A /* MainViewController.swift */; };
+		ED717D8D20583816005094B0 /* LwayveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED717D8C20583815005094B0 /* LwayveSDK.framework */; };
+		ED717D8E20583816005094B0 /* LwayveSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED717D8C20583815005094B0 /* LwayveSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ED717D902058382B005094B0 /* LXProxSeeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED717D8F2058382B005094B0 /* LXProxSeeSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,12 +36,11 @@
 			dstSubfolderSpec = 10;
 			files = (
 				ED5B16ED2044A8C500CD994A /* YapDatabase.framework in Embed Frameworks */,
+				ED717D8E20583816005094B0 /* LwayveSDK.framework in Embed Frameworks */,
 				ED5B16F52044A8C500CD994A /* Alamofire.framework in Embed Frameworks */,
 				ED5B16F12044A8C500CD994A /* GoogleToolboxForMac.framework in Embed Frameworks */,
 				ED5B16EF2044A8C500CD994A /* CocoaLumberjack.framework in Embed Frameworks */,
 				ED5B16EB2044A8C500CD994A /* SwiftyJSON.framework in Embed Frameworks */,
-				ED5B16F32044A8C500CD994A /* CocoaLumberjackSwift.framework in Embed Frameworks */,
-				ED5B16F72044A8CC00CD994A /* LwayveSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -58,15 +55,14 @@
 		ED5B16D92044A86400CD994A /* YapDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YapDatabase.framework; sourceTree = "<group>"; };
 		ED5B16DA2044A86400CD994A /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = "<group>"; };
 		ED5B16DB2044A86400CD994A /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = "<group>"; };
-		ED5B16DC2044A86400CD994A /* CocoaLumberjackSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaLumberjackSwift.framework; sourceTree = "<group>"; };
 		ED5B16DD2044A86400CD994A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alamofire.framework; sourceTree = "<group>"; };
-		ED5B16E52044A87300CD994A /* LwayveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LwayveSDK.framework; sourceTree = "<group>"; };
-		ED5B16E82044A88000CD994A /* LXProxSeeSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LXProxSeeSDK.framework; sourceTree = "<group>"; };
 		ED5B16FA2044A91000CD994A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED5B16FB2044A91000CD994A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED5B16FC2044A91000CD994A /* DebugInfoDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugInfoDataSource.swift; sourceTree = "<group>"; };
 		ED5B16FD2044A91000CD994A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		ED5B16FE2044A91000CD994A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		ED717D8C20583815005094B0 /* LwayveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LwayveSDK.framework; sourceTree = "<group>"; };
+		ED717D8F2058382B005094B0 /* LXProxSeeSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LXProxSeeSDK.framework; path = ../dependencies/LXProxSeeSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,14 +70,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED5B16F92044A8D200CD994A /* LXProxSeeSDK.framework in Frameworks */,
+				ED717D902058382B005094B0 /* LXProxSeeSDK.framework in Frameworks */,
 				ED5B16EC2044A8C500CD994A /* YapDatabase.framework in Frameworks */,
+				ED717D8D20583816005094B0 /* LwayveSDK.framework in Frameworks */,
 				ED5B16F42044A8C500CD994A /* Alamofire.framework in Frameworks */,
 				ED5B16F02044A8C500CD994A /* GoogleToolboxForMac.framework in Frameworks */,
 				ED5B16EE2044A8C500CD994A /* CocoaLumberjack.framework in Frameworks */,
 				ED5B16EA2044A8C500CD994A /* SwiftyJSON.framework in Frameworks */,
-				ED5B16F22044A8C500CD994A /* CocoaLumberjackSwift.framework in Frameworks */,
-				ED5B16F62044A8CC00CD994A /* LwayveSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,8 +87,6 @@
 			isa = PBXGroup;
 			children = (
 				ED5B16D72044A86400CD994A /* dependencies */,
-				ED5B16E72044A88000CD994A /* ProxSeeSDK */,
-				ED5B16E42044A87300CD994A /* LwayveSDK */,
 				ED5B16B12044A7F500CD994A /* SampleApp */,
 				ED5B16B02044A7F500CD994A /* Products */,
 				ED5B16F82044A8D200CD994A /* Frameworks */,
@@ -125,38 +118,21 @@
 		ED5B16D72044A86400CD994A /* dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				ED717D8C20583815005094B0 /* LwayveSDK.framework */,
 				ED5B16D82044A86400CD994A /* SwiftyJSON.framework */,
 				ED5B16D92044A86400CD994A /* YapDatabase.framework */,
 				ED5B16DA2044A86400CD994A /* CocoaLumberjack.framework */,
 				ED5B16DB2044A86400CD994A /* GoogleToolboxForMac.framework */,
-				ED5B16DC2044A86400CD994A /* CocoaLumberjackSwift.framework */,
 				ED5B16DD2044A86400CD994A /* Alamofire.framework */,
 			);
 			name = dependencies;
 			path = ../dependencies;
 			sourceTree = "<group>";
 		};
-		ED5B16E42044A87300CD994A /* LwayveSDK */ = {
-			isa = PBXGroup;
-			children = (
-				ED5B16E52044A87300CD994A /* LwayveSDK.framework */,
-			);
-			name = LwayveSDK;
-			path = "../lwayve-sdk/LwayveSDK";
-			sourceTree = "<group>";
-		};
-		ED5B16E72044A88000CD994A /* ProxSeeSDK */ = {
-			isa = PBXGroup;
-			children = (
-				ED5B16E82044A88000CD994A /* LXProxSeeSDK.framework */,
-			);
-			name = ProxSeeSDK;
-			path = "../proxsee-sdk/ProxSeeSDK";
-			sourceTree = "<group>";
-		};
 		ED5B16F82044A8D200CD994A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED717D8F2058382B005094B0 /* LXProxSeeSDK.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -369,11 +345,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U2AE9737PM;
-				FRAMEWORK_SEARCH_PATHS = (
-					../dependencies,
-					"../lwayve-sdk/LwayveSDK",
-					"../proxsee-sdk/ProxSeeSDK",
-				);
+				FRAMEWORK_SEARCH_PATHS = ../dependencies;
 				INFOPLIST_FILE = SampleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -392,11 +364,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U2AE9737PM;
-				FRAMEWORK_SEARCH_PATHS = (
-					../dependencies,
-					"../lwayve-sdk/LwayveSDK",
-					"../proxsee-sdk/ProxSeeSDK",
-				);
+				FRAMEWORK_SEARCH_PATHS = ../dependencies;
 				INFOPLIST_FILE = SampleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

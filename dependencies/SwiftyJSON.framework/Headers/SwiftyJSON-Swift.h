@@ -185,9 +185,6 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 SWIFT_MODULE_NAMESPACE_PUSH("SwiftyJSON")
 
-@interface NSNumber (SWIFT_EXTENSION(SwiftyJSON))
-@property (nonatomic, readonly) BOOL isBool;
-@end
 
 SWIFT_MODULE_NAMESPACE_POP
 #pragma clang diagnostic pop
