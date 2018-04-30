@@ -1,24 +1,24 @@
 PODS:
   - Alamofire (4.5.1)
-  - CocoaLumberjack (3.4.1):
-    - CocoaLumberjack/Default (= 3.4.1)
-    - CocoaLumberjack/Extensions (= 3.4.1)
-  - CocoaLumberjack/Default (3.4.1)
-  - CocoaLumberjack/Extensions (3.4.1):
+  - CocoaLumberjack (3.4.2):
+    - CocoaLumberjack/Default (= 3.4.2)
+    - CocoaLumberjack/Extensions (= 3.4.2)
+  - CocoaLumberjack/Default (3.4.2)
+  - CocoaLumberjack/Extensions (3.4.2):
     - CocoaLumberjack/Default
-  - GoogleToolboxForMac/Defines (2.1.3)
-  - GoogleToolboxForMac/NSData+zlib (2.1.3):
-    - GoogleToolboxForMac/Defines (= 2.1.3)
-  - LwayveSDK/Core (2.4.1):
+  - GoogleToolboxForMac/Defines (2.1.4)
+  - GoogleToolboxForMac/NSData+zlib (2.1.4):
+    - GoogleToolboxForMac/Defines (= 2.1.4)
+  - LwayveSDK/Core (3.0.0):
     - Alamofire (~> 4.5.0)
     - CocoaLumberjack (~> 3)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1.1)
     - SwiftyJSON (~> 3.1.4)
     - YapDatabase/Standard/Core (= 3.0)
-  - LwayveSDK/ProxSee (2.4.1):
+  - LwayveSDK/ProxSee (3.0.0):
     - LwayveSDK/Core
-    - ProxSeeSDK (= 3.0.0)
-  - ProxSeeSDK (3.0.0)
+    - ProxSeeSDK (= 3.0.2)
+  - ProxSeeSDK (3.0.2)
   - SwiftyJSON (3.1.4)
   - YapDatabase/Standard/Core (3.0):
     - CocoaLumberjack
@@ -28,13 +28,13 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  CocoaLumberjack: 2e258a064cacc8eb9a2aca318e24d02a0a7fd56d
-  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
-  LwayveSDK: 0c5884bea4f4e666b6823cb5db2c4101d17e477d
-  ProxSeeSDK: 2246ebd32ba03263aceca80880b4d56bcbf5a12d
+  CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
+  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
+  LwayveSDK: 6f5e6f170aca785a918ca9a44ecf3d68de80f48c
+  ProxSeeSDK: 38bab08dc5e8839838961f1f3dad8a21eb07f477
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   YapDatabase: 0cef6c79948169c924ae325d430ffcfa8a5231c2
 
 PODFILE CHECKSUM: bfb3ecee753d13765a93409b5add1405e966e36e
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0
