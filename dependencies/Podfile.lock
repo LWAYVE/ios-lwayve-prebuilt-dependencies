@@ -9,13 +9,13 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.4)
   - GoogleToolboxForMac/NSData+zlib (2.1.4):
     - GoogleToolboxForMac/Defines (= 2.1.4)
-  - LwayveSDK/Core (3.0.0):
+  - LwayveSDK/Core (3.1.0):
     - Alamofire (~> 4.5.0)
     - CocoaLumberjack (~> 3)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1.1)
     - SwiftyJSON (~> 3.1.4)
     - YapDatabase/Standard/Core (= 3.0)
-  - LwayveSDK/ProxSee (3.0.0):
+  - LwayveSDK/ProxSee (3.1.0):
     - LwayveSDK/Core
     - ProxSeeSDK (= 3.0.2)
   - ProxSeeSDK (3.0.2)
@@ -30,7 +30,7 @@ SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
-  LwayveSDK: 6f5e6f170aca785a918ca9a44ecf3d68de80f48c
+  LwayveSDK: 11b5649ceacc813aec110bfed021f4229bb21364
   ProxSeeSDK: 38bab08dc5e8839838961f1f3dad8a21eb07f477
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   YapDatabase: 0cef6c79948169c924ae325d430ffcfa8a5231c2
